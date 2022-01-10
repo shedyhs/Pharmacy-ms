@@ -1,0 +1,36 @@
+{
+  "env": {
+    "es2021": true, //Versão do ECMAScript
+    "node": true // Para o eslint reconhecer o node
+  },
+  "extends": [
+    "airbnb-base", // Baseado no padrão do airbnb
+    "plugin:prettier/recommended",
+    "plugin:@typescript-eslint/recommended"
+  ],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {  // Configurações do parser
+    "ecmaVersion": 2021, //Versão do ECMAScript
+    "sourceType": "module" // Modo de compilação
+  },
+  "plugins": [
+    "@typescript-eslint", // Para o eslint reconhecer o typescript
+    "prettier" // Para o eslint reconhecer o prettier
+  ],
+  "rules": {
+    "import/prefer-default-export": "off", // Desativa a necessidade do uso de default export
+    "import/extensions": [
+      "error",
+      "ignorePackages",
+      {
+        "ts": "never"
+      }
+    ],
+    "prettier/prettier": "error" // Para o eslint reconhecer os erros do prettier
+  },
+  "settings": {
+    "import/resolver": {
+      "typescript": {}
+    }
+  }
+}
