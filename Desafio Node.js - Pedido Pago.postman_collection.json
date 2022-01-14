@@ -389,6 +389,36 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "Delete",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"pm.globals.set(\"pharmacy_url\", \"http://localhost:3000\");\r",
+									"pm.globals.set(\"product_url\", \"http://localhost:3001\");"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{product_url}}/products/{{product_id}}",
+							"host": [
+								"{{product_url}}"
+							],
+							"path": [
+								"products",
+								"{{product_id}}"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		}
