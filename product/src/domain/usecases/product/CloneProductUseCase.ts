@@ -18,7 +18,10 @@ export class CloneProductUseCase implements ICloneProduct {
     }
 
     if (foundProduct.pharmacyId !== data.pharmacyId) {
-      throw new ApplicationError('Pharmacy already have this product', 409);
+      throw new ApplicationError(
+        'You cant clone product of another pharmacy',
+        409,
+      );
     }
 
     const pharmacy = await this.grpcHandler.getPharmacyById(data.pharmacyId);
