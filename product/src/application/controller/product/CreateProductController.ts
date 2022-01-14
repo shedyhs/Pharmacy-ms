@@ -8,7 +8,6 @@ export class CreateProductController extends BaseController {
   }
 
   async perform({ body }: HttpRequest): Promise<HttpResponse> {
-    console.log('CreateProductController.perform');
     const response = await this.createProductUseCase.execute(body);
     return {
       statusCode: 201,

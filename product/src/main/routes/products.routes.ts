@@ -37,7 +37,7 @@ productsRouter.put(
 );
 
 productsRouter.post(
-  '/products/:productId/clone/:pharmacyId',
+  '/products/:productId/pharmacies/:pharmacyId/clone',
   cloneProduct,
   expressAdaptRoute(container.resolve('cloneProductController')),
 );

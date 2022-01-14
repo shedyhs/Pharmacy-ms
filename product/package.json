@@ -5,14 +5,14 @@
   "author": "Shedy Husein Sinkoc",
   "license": "MIT",
   "scripts": {
+    "dev": "ts-node-dev --exit-child --respawn --ignore-watch node_modules --transpile-only src/server.ts",
+    "test": "jest --no-cache --runInBand --detectOpenHandles --coverage",
+    "migrate:run": "prisma migrate deploy",
     "build": "tsc -p tsconfig.build.json && copyfiles -f ./src/main/grpc/pharmacy.proto ./dist/main/grpc",
     "start:build": "node dist/server.js",
-    "migrate:run": "prisma migrate deploy",
-    "dev": "ts-node-dev --exit-child --respawn --ignore-watch node_modules --transpile-only src/server.ts",
-    "proto:generate": "proto-loader-gen-types --longs=String --enums=String --defaults --oneofs --grpcLib=@grpc/grpc-js --outDir=./src/main/grpc/proto/ ./src/main/grpc/*.proto",
-    "docker:up": "cd ..&&docker-compose up -d&&cd ./product",
-    "docker:down": "cd ..&&docker-compose down&&cd ./product",
-    "test": "jest --no-cache --runInBand --detectOpenHandles --coverage"
+    "docker:up": "cd .. && docker-compose up -d && cd ./product",
+    "docker:down": "cd .. && docker-compose down && cd ./product",
+    "proto:generate": "proto-loader-gen-types --longs=String --enums=String --defaults --oneofs --grpcLib=@grpc/grpc-js --outDir=./src/main/grpc/proto/ ./src/main/grpc/*.proto"
   },
   "dependencies": {
     "@grpc/grpc-js": "^1.4.4",

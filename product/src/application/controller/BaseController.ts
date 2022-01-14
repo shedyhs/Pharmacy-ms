@@ -6,7 +6,6 @@ import { HttpRequest, HttpResponse } from '../../shared/http/Http';
 export abstract class BaseController {
   abstract perform(httpRequest: HttpRequest): Promise<HttpResponse>;
   async handle(httpRequest: HttpRequest): Promise<HttpResponse> {
-    console.log('BaseController:handle');
     try {
       const response = await this.perform(httpRequest);
       return response;

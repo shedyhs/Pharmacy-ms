@@ -18,7 +18,6 @@ export class CreateProductUseCase implements ICreateProduct {
     const foundPharmacy = await this.grpcHandler.getPharmacyById(
       data.pharmacyId,
     );
-
     if (!foundPharmacy) {
       throw new ApplicationError('Pharmacy not found', 404);
     }

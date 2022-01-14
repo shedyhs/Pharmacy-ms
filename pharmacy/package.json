@@ -6,12 +6,13 @@
   "license": "MIT",
   "scripts": {
     "dev": "ts-node-dev --exit-child --respawn --ignore-watch node_modules --transpile-only src/server.ts",
-    "proto:generate": "proto-loader-gen-types --longs=String --enums=String --defaults --oneofs --grpcLib=@grpc/grpc-js --outDir=./src/main/grpc/proto/ ./src/main/grpc/*.proto",
+    "test": "jest --no-cache --runInBand --detectOpenHandles --coverage",
+    "migrate:run": "prisma migrate deploy",
+    "build": "tsc -p tsconfig.build.json && copyfiles -f ./src/main/grpc/pharmacy.proto ./dist/main/grpc",
+    "start:build": "node dist/server.js",
     "docker:up": "cd .. && docker-compose up -d && cd ./pharmacy",
     "docker:down": "cd .. && docker-compose down && cd ./pharmacy",
-    "migrate:run": "prisma migrate deploy && cd../product && prisma migrate deploy && cd ../pharmacy",
-    "build": "tsc -p tsconfig.build.json && copyfiles -f ./src/main/grpc/pharmacy.proto ./dist/main/grpc",
-    "test": "jest --no-cache --runInBand --detectOpenHandles --coverage"
+    "proto:generate": "proto-loader-gen-types --longs=String --enums=String --defaults --oneofs --grpcLib=@grpc/grpc-js --outDir=./src/main/grpc/proto/ ./src/main/grpc/*.proto"
   },
   "dependencies": {
     "@grpc/grpc-js": "^1.4.4",
