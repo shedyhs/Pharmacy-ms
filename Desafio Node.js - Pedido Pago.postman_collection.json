@@ -1,0 +1,396 @@
+{
+	"info": {
+		"_postman_id": "b7c38660-a6c9-40a9-b784-96051dc01b3c",
+		"name": "Desafio Node.js - Pedido Pago",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Pharmacy",
+			"item": [
+				{
+					"name": "Index",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"pm.globals.set(\"pharmacy_url\", \"http://localhost:3000\");\r",
+									"pm.globals.set(\"product_url\", \"http://localhost:3001\");"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{pharmacy_url}}/pharmacies?limit=2&page=1",
+							"host": [
+								"{{pharmacy_url}}"
+							],
+							"path": [
+								"pharmacies"
+							],
+							"query": [
+								{
+									"key": "limit",
+									"value": "2"
+								},
+								{
+									"key": "page",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const response = pm.response.json();\r",
+									"\r",
+									"pm.globals.set(\"pharmacy_id\", response.id);"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"pm.globals.set(\"pharmacy_url\", \"http://localhost:3000\");\r",
+									"pm.globals.set(\"product_url\", \"http://localhost:3001\");"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"logo\": \"logo\",\r\n  \"name\": \"name\",\r\n  \"cnpj\": \"15178927000517\",\r\n  \"address\": \"address\",\r\n  \"openingHours\": \"openingHours\",\r\n  \"responsible\": \"responsible\",\r\n  \"phone\": \"65984359505\",\r\n  \"others\": \"others\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{pharmacy_url}}/pharmacies",
+							"host": [
+								"{{pharmacy_url}}"
+							],
+							"path": [
+								"pharmacies"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Show",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"pm.globals.set(\"pharmacy_url\", \"http://localhost:3000\");\r",
+									"pm.globals.set(\"product_url\", \"http://localhost:3001\");"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{pharmacy_url}}/pharmacies/{{pharmacy_id}}",
+							"host": [
+								"{{pharmacy_url}}"
+							],
+							"path": [
+								"pharmacies",
+								"{{pharmacy_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"pm.globals.set(\"pharmacy_url\", \"http://localhost:3000\");\r",
+									"pm.globals.set(\"product_url\", \"http://localhost:3001\");"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"logo\": \"logo2\",\r\n  \"name\": \"name2\",\r\n  \"address\": \"address2\",\r\n  \"openingHours\": \"openingHours2\",\r\n  \"responsible\": \"responsible\",\r\n  \"phone\": \"65984359505\",\r\n  \"others\": \"others2\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{pharmacy_url}}/pharmacies/{{pharmacy_id}}",
+							"host": [
+								"{{pharmacy_url}}"
+							],
+							"path": [
+								"pharmacies",
+								"{{pharmacy_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"pm.globals.set(\"pharmacy_url\", \"http://localhost:3000\");\r",
+									"pm.globals.set(\"product_url\", \"http://localhost:3001\");"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{pharmacy_url}}/pharmacies/{{pharmacy_id}}",
+							"host": [
+								"{{pharmacy_url}}"
+							],
+							"path": [
+								"pharmacies",
+								"{{pharmacy_id}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Product",
+			"item": [
+				{
+					"name": "Create",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"pm.globals.set(\"pharmacy_url\", \"http://localhost:3000\");\r",
+									"pm.globals.set(\"product_url\", \"http://localhost:3001\");"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const response = pm.response.json();\r",
+									"\r",
+									"pm.globals.set(\"product_id\", response.id);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"name\",\r\n  \"volume\": 200,\r\n  \"availability\": 132,\r\n  \"price\": 12.20,\r\n  \"ingredients\": \"ingredients\",\r\n  \"thumbnail\": \"thumbnail\",\r\n  \"others\": \"others\",\r\n  \"pharmacyId\": \"{{pharmacy_id}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{product_url}}/products",
+							"host": [
+								"{{product_url}}"
+							],
+							"path": [
+								"products"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Index",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"pm.globals.set(\"pharmacy_url\", \"http://localhost:3000\");\r",
+									"pm.globals.set(\"product_url\", \"http://localhost:3001\");"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{product_url}}/products?page=1&limit=2",
+							"host": [
+								"{{product_url}}"
+							],
+							"path": [
+								"products"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "limit",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Show",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"pm.globals.set(\"pharmacy_url\", \"http://localhost:3000\");\r",
+									"pm.globals.set(\"product_url\", \"http://localhost:3001\");"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{product_url}}/products/{{product_id}}",
+							"host": [
+								"{{product_url}}"
+							],
+							"path": [
+								"products",
+								"{{product_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"pm.globals.set(\"pharmacy_url\", \"http://localhost:3000\");\r",
+									"pm.globals.set(\"product_url\", \"http://localhost:3001\");"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"name\",\r\n  \"volume\": 300,\r\n  \"availability\": 321,\r\n  \"price\": 13.20,\r\n  \"ingredients\": \"ingredients2\",\r\n  \"thumbnail\": \"thumbnail2\",\r\n  \"others\": \"others2\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{product_url}}/products/{{product_id}}",
+							"host": [
+								"{{product_url}}"
+							],
+							"path": [
+								"products",
+								"{{product_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Clone",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"pm.globals.set(\"pharmacy_url\", \"http://localhost:3000\");\r",
+									"pm.globals.set(\"product_url\", \"http://localhost:3001\");"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{product_url}}/products/{{product_id}}/pharmacies/{{pharmacy_id}}/clone",
+							"host": [
+								"{{product_url}}"
+							],
+							"path": [
+								"products",
+								"{{product_id}}",
+								"pharmacies",
+								"{{pharmacy_id}}",
+								"clone"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
