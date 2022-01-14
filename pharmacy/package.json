@@ -1,13 +1,29 @@
 {
   "name": "pharmacy-ms",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "server.js",
   "author": "Shedy Husein Sinkoc",
   "license": "MIT",
   "scripts": {
-    "dev": "ts-node-dev --exit-child --respawn --ignore-watch node_modules --transpile-only src/index.ts"
+    "dev": "ts-node-dev --exit-child --respawn --ignore-watch node_modules --transpile-only src/server.ts",
+    "proto:generate": "proto-loader-gen-types --longs=String --enums=String --defaults --oneofs --grpcLib=@grpc/grpc-js --outDir=./src/main/grpc/proto/ ./src/main/grpc/*.proto",
+    "docker:up": "cd .. && docker-compose up -d && cd ./pharmacy",
+    "docker:down": "cd .. && docker-compose down && cd ./pharmacy",
+    "migrate:run": "prisma migrate deploy && cd../product && prisma migrate deploy && cd ../pharmacy",
+    "build": "tsc -p tsconfig.build.json && copyfiles -f ./src/main/grpc/pharmacy.proto ./dist/main/grpc",
+    "test": "jest --no-cache --runInBand --detectOpenHandles --coverage"
+  },
+  "dependencies": {
+    "@grpc/grpc-js": "^1.4.4",
+    "@grpc/proto-loader": "^0.6.6",
+    "@prisma/client": "^3.7.0",
+    "awilix": "^6.0.0",
+    "celebrate": "^15.0.0",
+    "express": "^4.17.2"
   },
   "devDependencies": {
+    "@types/express": "^4.17.13",
+    "@types/jest": "^27.4.0",
     "@typescript-eslint/eslint-plugin": "^5.9.0",
     "@typescript-eslint/parser": "^5.9.0",
     "eslint": "^8.6.0",
@@ -16,7 +32,12 @@
     "eslint-import-resolver-typescript": "^2.5.0",
     "eslint-plugin-import": "2.25.2",
     "eslint-plugin-prettier": "^4.0.0",
+    "jest": "^27.4.7",
+    "jest-mock-extended": "^2.0.4",
     "prettier": "^2.5.1",
+    "prisma": "^3.7.0",
+    "ts-jest": "^27.1.2",
+    "ts-node-dev": "^1.1.8",
     "typescript": "^4.5.4"
   }
 }

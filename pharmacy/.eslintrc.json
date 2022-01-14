@@ -19,6 +19,12 @@
   ],
   "rules": {
     "import/prefer-default-export": "off", // Desativa a necessidade do uso de default export
+    "no-underscore-dangle": "off",
+    "lines-between-class-members": "off",
+    "no-use-before-define": "off",
+    "no-useless-constructor": "off",
+    "@typescript-eslint/no-namespace": "off",
+    "class-methods-use-this": "off",
     "import/extensions": [
       "error",
       "ignorePackages",
