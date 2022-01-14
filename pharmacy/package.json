@@ -20,6 +20,7 @@
     "@prisma/client": "^3.7.0",
     "awilix": "^6.0.0",
     "celebrate": "^15.0.0",
+    "copyfiles": "^2.4.1",
     "express": "^4.17.2"
   },
   "devDependencies": {
