@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+package pharmacy;
+
+service PharmacyService {
+  rpc FindById(FindPharmacyByIdRequest) returns (Pharmacy);
+}
+
+message Pharmacy {
+  string id = 1;
+  string logo = 2;
+  string name = 3;
+  string cnpj = 4;
+  string address = 5;
+  string openingHours = 6;
+  string responsible = 7;
+  string phone = 8;
+  string others = 9;
+}
+
+message FindPharmacyByIdRequest {
+  string id = 1;
+}
